@@ -1,42 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const input = document.querySelector(".namebox input");
-  const label = document.querySelector(".namebox label");
+  const input = document.querySelectorAll(".inputbox input");
+  const label = document.querySelectorAll('.inputbox label');
 
-  input.addEventListener("focus", function () {
-    label.classList.add("active");
-  });
-  input.addEventListener("blur", function () {
-    if (input.value === "") {
-      label.classList.remove("active");
-    }
-  });
-});
+  input.forEach(function(inputItem, index) {
+    inputItem.addEventListener("focus", function () {
+      label[index].classList.add("active");
+    });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.querySelector(".emailbox input");
-  const label = document.querySelector(".emailbox label");
-
-  input.addEventListener("focus", function () {
-    label.classList.add("active");
-  });
-  input.addEventListener("blur", function () {
-    if (input.value === "") {
-      label.classList.remove("active");
-    }
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.querySelector(".phnbox input");
-  const label = document.querySelector(".phnbox label");
-
-  input.addEventListener("focus", function () {
-    label.classList.add("active");
-  });
-  input.addEventListener("blur", function () {
-    if (input.value === "") {
-      label.classList.remove("active");
-    }
+    inputItem.addEventListener("blur", function () {
+      if (inputItem.value === "") {
+        label[index].classList.remove("active");
+      }
+    });
   });
 });
 
@@ -118,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const imageInput = document.getElementById("image");
   const Message = document.getElementById("Message");
+  const box = document.querySelector(".uploadbox");
+  const boxLabel = document.querySelector(".uploadbox label");
   const previewContainer = document.getElementById("previewContainer");
   const previewImage = document.getElementById("previewImage");
   const submitButton = document.getElementById("submit");
@@ -135,6 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
         Message.textContent = "We accept only image files.";
         Message.style.marginBottom = "7px";
         previewContainer.style.display = "none";
+        box.style.borderColor = "rgb(255, 140, 140)";
+        box.style.backgroundColor = "#ffe1e1";
+        boxLabel.style.color = "red";
         submitButton.disabled = true;
         return;
       }
@@ -143,6 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
       Message.textContent = file.name;
       Message.style.color = "black";
       Message.style.marginBottom = "0px";
+      box.style.borderColor = "";
+      box.style.backgroundColor = "";
+      boxLabel.style.color = "";
 
       // Display a small preview of the image
       const reader = new FileReader();
@@ -155,6 +138,9 @@ document.addEventListener("DOMContentLoaded", function () {
       Message.style.color = "#e98e8e";
       Message.textContent = "Wow, such empty.";
       Message.style.marginBottom = "7px";
+      box.style.borderColor = "rgb(255, 140, 140)";
+      box.style.backgroundColor = "#ffe1e1";
+      boxLabel.style.color = "red";
       previewContainer.style.display = "none";
       previewContainer.style.display = "none";
     }
@@ -181,8 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Check if the drop occurred inside the image input div
     if (event.target !== imageInput) {
       Message.style.color = "#e98e8e";
-      Message.textContent = "Wow, such empty.";
+      Message.textContent = "Drop your image in the box";
       Message.style.marginBottom = "7px";
+      box.style.borderColor = "rgb(255, 140, 140)";
+      box.style.backgroundColor = "#ffe1e1";
+      boxLabel.style.color = "red";
       previewContainer.style.display = "none";
       return;
     }
@@ -198,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //const emailValidationResult = document.getElementById("emailValidationResult");
   const emailbox = document.querySelector(".emailbox");
   const emailboxlabel = document.querySelector(".emailbox label");
+  const emailError = document.getElementById("mailerr");
   const submitButton = document.getElementById("submit");
 
   // Function to validate email
@@ -205,13 +195,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = emailInput.value.trim();
 
     // Regular expression pattern for email validation
-    const emailPattern =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const emailPattern = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/;
     if (email.length === 0) {
       // Email field is empty
       emailbox.style.borderColor = "#d2d2d7";
       emailbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
       emailboxlabel.style.color = "#86868b";
+      emailError.style.display = "none";
       submitButton.disabled = true;
     } else {
       if (emailPattern.test(email)) {
@@ -219,12 +209,14 @@ document.addEventListener("DOMContentLoaded", function () {
         emailbox.style.borderColor = "#d2d2d7";
         emailbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
         emailboxlabel.style.color = "#86868b";
+        emailError.style.display = "none";
         submitButton.disabled = false;
       } else {
         // Invalid email address
         emailbox.style.borderColor = "rgb(255, 140, 140)";
         emailbox.style.backgroundColor = "#ffe1e1";
         emailboxlabel.style.color = "red";
+        emailError.style.display = "block";
         submitButton.disabled = true;
       }
     }
@@ -239,6 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //const emailValidationResult = document.getElementById("emailValidationResult");
   const namebox = document.querySelector(".namebox");
   const nameboxlabel = document.querySelector(".namebox label");
+  const nameError = document.getElementById("nameerr");
   const submitButton = document.getElementById("submit");
 
   // Function to validate email
@@ -252,6 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
       namebox.style.borderColor = "#d2d2d7";
       namebox.style.backgroundColor = "hsla(0,0%,100%,.8)";
       nameboxlabel.style.color = "#86868b";
+      nameError.style.display = "none";
       submitButton.disabled = true;
     } else {
       if (namePattern.test(name)) {
@@ -259,12 +253,14 @@ document.addEventListener("DOMContentLoaded", function () {
         namebox.style.borderColor = "#d2d2d7";
         namebox.style.backgroundColor = "hsla(0,0%,100%,.8)";
         nameboxlabel.style.color = "#86868b";
+        nameError.style.display = "none";
         submitButton.disabled = false;
       } else {
         // Invalid email address
         namebox.style.borderColor = "rgb(255, 140, 140)";
         namebox.style.backgroundColor = "#ffe1e1";
         nameboxlabel.style.color = "red";
+        nameError.style.display = "block";
         submitButton.disabled = true;
       }
     }
@@ -279,6 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //const emailValidationResult = document.getElementById("emailValidationResult");
   const phnbox = document.querySelector(".phnbox");
   const phnboxlabel = document.querySelector(".phnbox label");
+  const phoneError = document.getElementById("phnerr");
   const submitButton = document.getElementById("submit");
 
   // Function to validate email
@@ -292,6 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
       phnbox.style.borderColor = "#d2d2d7";
       phnbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
       phnboxlabel.style.color = "#86868b";
+      phoneError.style.display = "none";
       submitButton.disabled = true;
     } else {
       if (phonePattern.test(phone)) {
@@ -299,17 +297,19 @@ document.addEventListener("DOMContentLoaded", function () {
         phnbox.style.borderColor = "#d2d2d7";
         phnbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
         phnboxlabel.style.color = "#86868b";
+        phoneError.style.display = "none";
         submitButton.disabled = false;
       } else {
         // Invalid email address
         phnbox.style.borderColor = "rgb(255, 140, 140)";
         phnbox.style.backgroundColor = "#ffe1e1";
         phnboxlabel.style.color = "red";
+        phoneError.style.display = "block";
         submitButton.disabled = true;
       }
     }
   }
 
   // Event listener for email input blur event
-  phnInput.addEventListener("input", validatePhone);
+  phnInput.addEventListener("blur", validatePhone);
 });
