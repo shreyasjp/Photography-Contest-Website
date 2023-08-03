@@ -17,7 +17,6 @@
       id="form"
         action="https://script.google.com/macros/s/AKfycbwwgCasZ0rWU5CzdAe5JtnY3vgjPZ_6dAAlanbcs4NIGTOez6AvW_g06iYcx_2lijE/exec"
         method="POST"
-        enctype="multipart/form-data"
       >
         <div class="namebox inputbox">
           <input
@@ -66,6 +65,15 @@
           <label>Mobile Number</label>
         </div>
         <p class="inputerr" id="phnerr"> <span id="infoicon">🛈</span> That does'nt look like a Mobile number</p>
+        <input type="submit" id="submit" value="Continue" />
+      </form>
+      <form
+      class="hide"
+      id="form2"
+        action=""
+        method="POST"
+        enctype="multipart/form-data"
+      > 
         <div class="uploadbox">
           <input
             type="file"
@@ -76,12 +84,13 @@
           />
           <label for="Image" id="Upload">Drop your image</label>
         </div>
-        <p id="Message"></p>
+        <p id="Message">Your Details have been saved.</p>
         <div id="previewContainer">
           <img id="previewImage" />
         </div>
-
-        <input type="submit" id="submit" value="Continue" />
+        <input type="submit" id="submit" value="Upload" />
+          </div>
+          <script src="Scripts/imageentry.js"></script>
       </form>
     </div>
     <script src="Scripts/index.js"></script>
