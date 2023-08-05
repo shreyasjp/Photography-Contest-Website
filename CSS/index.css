@@ -1,5 +1,10 @@
 @import url("https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css");
 
+@media(max-width:768px) {
+  #symbol{
+    display: none;
+  }
+}
 @media (max-width: 375px) {
   body{
   transform: scale(0.75);
@@ -13,6 +18,8 @@
 
 body {
   background-color: hsla(0, 0%, 100%, 0.8);
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -33,6 +40,7 @@ form {
   flex-direction: inherit;
   align-items: center;
   flex-wrap: wrap;
+  border-radius: 7px;
 }
 
 .inputbox {
@@ -47,7 +55,7 @@ form {
   height: 50px;
 }
 
-.input:focus-within {
+.inputbox:focus-within {
   border-color: #000000;
 }
 
@@ -72,7 +80,7 @@ form {
   display: block;
   position: absolute;
   cursor: pointer;
-  font-weight: 300;
+  font-weight: 200;
   font-size: 17px;
   pointer-events: none;
   transform: translate(5px, -37px) scale(1);
@@ -92,6 +100,72 @@ form {
 .inputbox label.active {
   transform: translate(5px, -49px) scale(0.7);
   color: #86868b;
+}
+
+/* Dropdown Styles */
+.dropdown-list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 97%;
+  z-index: 1;
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 5px;
+  max-height: 176px;
+  overflow-y: auto;
+  border-style: solid ;
+  border-width: 4px;
+  border-color: hsl(0, 0%, 90%);
+  border-top: solid 4px hsl(0, 0%, 90%);
+}
+
+.dropdown-list li {
+  padding: 12px;
+  cursor: pointer;
+  color: #494949;
+  border-bottom: 1px solid #d2d2d7; /* Add a bottom border for separation */
+  margin-bottom: 3px; /* Add a small gap between elements */
+  border-radius: 5px;
+  background-color: hsla(0, 0%, 100%, 0.8);
+}
+
+.dropdown-list li:last-child {
+  border-bottom: none; /* Remove the bottom border for the last item */
+  margin-bottom: 0%;
+}
+
+.dropdown-list li:hover {
+  background-color: #d4d4d4;
+}
+
+/* Show dropdown list when input is focused */
+.dropdown:focus-within .dropdown-list {
+  display: block;
+  animation: dropdownAnimation 0.3s ease-in-out;
+}
+
+@keyframes dropdownAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Show selected option in the input field */
+.dropdown .active {
+  transform: translate(5px, -49px) scale(0.7);
+  color: #86868b;
+}
+
+/* Webkit-based browsers (e.g., Chrome, Safari) */
+.dropdown-list::-webkit-scrollbar {
+  width: 0; /* Hide the scrollbar on Webkit-based browsers */
 }
 
 .uploadbox {
@@ -130,7 +204,7 @@ form {
 .uploadbox{
   z-index: 800;
 }
-.uploadbox input {
+#image {
   opacity: 0;
   width: 100%;
   height: 100%;
@@ -167,16 +241,37 @@ form {
   width: 100%;
 }
 
-#submit {
-  width: 85px;
-  height: 30px;
-  margin: 5px;
+#submitlabel {
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 20px;
+  margin-top: 10px;
+  border-style: none;
+  border-radius: 4px;
+  opacity: 1;
+  font-size: 13px;
+  background: linear-gradient(to top, rgba(26, 117, 117, 0.445), rgba(0, 250, 187, 0.37));
+  color: #494949;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: 100;
+}
+#upload{
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-style: none;
   border-radius: 4px;
   opacity: 1;
   font-weight: lighter;
   font-size: 13px;
-  background: linear-gradient(to top, rgb(117, 149, 255), rgb(103, 171, 240));
+  background: linear-gradient(to top, rgb(104, 202, 219), rgb(91, 178, 194));
   color: rgb(255, 255, 255);
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -217,4 +312,28 @@ form {
   animation-duration: 0.8s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+a {
+  margin-top: 20px;
+  color: #494949;
+  font-weight: 100;
+  position: relative;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 13px;
+}
+a:link {
+  text-decoration: none;
+  color: #494949;
+}
+a:visited {
+  text-decoration: none;
+  color: #494949;
+}
+#symbol{
+  color: #494949;
+  font-weight: 100;
+  font-size: 12px;
 }

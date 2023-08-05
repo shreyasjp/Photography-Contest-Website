@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailPattern = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/;
     if (email.length === 0) {
       // Email field is empty
-      emailbox.style.borderColor = "#d2d2d7";
+      emailbox.style.borderColor = "";
       emailbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
       emailboxlabel.style.color = "#86868b";
       emailError.style.display = "none";
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       if (emailPattern.test(email)) {
         // Valid email address
-        emailbox.style.borderColor = "#d2d2d7";
+        emailbox.style.borderColor = "";
         emailbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
         emailboxlabel.style.color = "#86868b";
         emailError.style.display = "none";
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const namePattern = /^[a-zA-Z.][a-zA-Z.\s]*$/;
     if (name.length === 0) {
       // Email field is empty
-      namebox.style.borderColor = "#d2d2d7";
+      namebox.style.borderColor = "";
       namebox.style.backgroundColor = "hsla(0,0%,100%,.8)";
       nameboxlabel.style.color = "#86868b";
       nameError.style.display = "none";
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       if (namePattern.test(name)) {
         // Valid email address
-        namebox.style.borderColor = "#d2d2d7";
+        namebox.style.borderColor = "";
         namebox.style.backgroundColor = "hsla(0,0%,100%,.8)";
         nameboxlabel.style.color = "#86868b";
         nameError.style.display = "none";
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const phonePattern = /^[6-9][0-9]{9}$/;
     if (phone.length === 0) {
       // Email field is empty
-      phnbox.style.borderColor = "#d2d2d7";
+      phnbox.style.borderColor = "";
       phnbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
       phnboxlabel.style.color = "#86868b";
       phoneError.style.display = "none";
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       if (phonePattern.test(phone)) {
         // Valid email address
-        phnbox.style.borderColor = "#d2d2d7";
+        phnbox.style.borderColor = "";
         phnbox.style.backgroundColor = "hsla(0,0%,100%,.8)";
         phnboxlabel.style.color = "#86868b";
         phoneError.style.display = "none";
@@ -151,7 +151,8 @@ document.addEventListener("DOMContentLoaded", function () {
 window.addEventListener("load", function() {
   const form1 = document.querySelector("#form");
   const form2 = document.querySelector("#form2");
-  const submitButton = document.querySelector("#submit");
+  const submitButton = document.querySelector("#submitlabel");
+  const link = document.querySelector('a');
   
   form1.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -168,15 +169,90 @@ window.addEventListener("load", function() {
     })
     .then(() => {
     form1.classList.add("remove");
+    submitButton.classList.add("remove");
+    link.classList.add("remove");
     setTimeout(() => {
       form1.remove();
+      submitButton.remove();
+      link.remove();
       form2.classList.remove("hide");
     }, 1000);
     setTimeout(() => {
       clearInterval(interval);
       submitButton.classList.remove("breathing");
-    }, 3000);
+    }, 0);
   })
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("dropdownInput");
+  const Box = document.querySelector(".dropdown label");
+  const dropdownList = document.querySelector('.dropdown-list');
+  const listItems = document.querySelectorAll('.dropdown-list li');
+
+  input.addEventListener('focus', function () {
+    const searchString = input.value;
+    const regex = new RegExp(searchString, 'i');
+
+    listItems.forEach(item => {
+      const listItemText = item.textContent;
+      if (searchString === '' || regex.test(listItemText)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Show or hide the dropdown list based on whether there are matching items
+    const matchingItems = Array.from(listItems).some(item => {
+      return item.style.display === 'block';
+    });
+
+    if (matchingItems) {
+      dropdownList.style.display = 'block';
+    } else {
+      dropdownList.style.display = 'none';
+    }
+  });
+
+  input.addEventListener('input', function () {
+    const searchString = input.value;
+    const regex = new RegExp(searchString, 'i');
+
+    listItems.forEach(item => {
+      const listItemText = item.textContent;
+      if (searchString === '' || regex.test(listItemText)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Show or hide the dropdown list based on whether there are matching items
+    const matchingItems = Array.from(listItems).some(item => {
+      return item.style.display === 'block';
+    });
+
+    if (matchingItems) {
+      dropdownList.style.display = 'block';
+    } else {
+      dropdownList.style.display = 'none';
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    // Hide the dropdown list when clicking outside the input field or list items
+    if (!input.contains(event.target) && !dropdownList.contains(event.target)) {
+      dropdownList.style.display = 'none';
+    }
+  });
+
+  listItems.forEach(item => {
+    item.addEventListener('click', function () {
+      input.value = item.textContent;
+      Box.classList.add("active");
+      dropdownList.style.display = 'none';
+    });
+  });
+});
