@@ -60,3 +60,16 @@ function convertLink(link) {
     })
     .catch((error) => console.error('Error fetching CSV:', error));
   
+document.addEventListener("DOMContentLoaded",function(){
+
+  const img = document.querySelectorAll(".img");
+  const name = document.querySelectorAll(".name");
+  const dept = document.querySelectorAll(".dept");
+
+  img.forEach(function(imgItem,i){
+    imgItem.addEventListener("mouseover", function(){
+      name[i].style.display = "block";
+      dept[i].style.display = "block";
+    })
+  })
+})

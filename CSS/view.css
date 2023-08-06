@@ -1,3 +1,10 @@
+@import url("https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css");
+
+.body{
+    font-family: "GothamPro";
+    color:white;
+    font-size: 11px;
+}
 .container{
     display: flex;
     align-items: center;
@@ -18,18 +25,26 @@
     padding: 20px 10px;
 }
 
+@media (max-width: 768px) {
+    .datacontainer {
+      flex-direction: column;
+    }
+  }
+
 .img{
     width: 360px;
     height: auto;
 }
 
 .name{
+    display: none;
     position: relative;
     top: -50px;
     left: 10px;
 }
 
 .dept{
+    display: none;
     position: relative;
     top: -60px;
     left: 10px;
