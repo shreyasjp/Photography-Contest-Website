@@ -62,14 +62,16 @@ function convertLink(link) {
   
 document.addEventListener("DOMContentLoaded",function(){
 
+  let i;
   const img = document.querySelectorAll(".img");
   const name = document.querySelectorAll(".name");
   const dept = document.querySelectorAll(".dept");
-
-  img.forEach(function(imgItem,i){
-    imgItem.addEventListener("mouseover", function(){
+  
+  img.forEach(function(imgItem) {
+    i = img.indexOf(imgItem);
+    imgItem.addEventListener("mouseover", function() {
       name[i].style.display = "block";
       dept[i].style.display = "block";
-    })
-  })
+    });
+  });
 })
