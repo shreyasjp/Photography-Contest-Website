@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded",function(){
   img.forEach(function(imgItem) {
     i = img.indexOf(imgItem);
     imgItem.addEventListener("mouseover", function() {
-      name[i].style.display = "block";
-      dept[i].style.display = "block";
+      name[i].style.display = "flex";
+      dept[i].style.display = "flex";
     });
   });
 })
