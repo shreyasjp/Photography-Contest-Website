@@ -1,15 +1,4 @@
-// Function to convert Google Drive links to the correct format
-function convertLink(link) {
-    // Define the regular expression pattern to match the original link format
-    var regex = /https:\/\/drive\.google\.com\/open\?id=([a-zA-Z0-9_-]+)/;
-  
-    // Use the replace() method with a callback function to convert the link
-    var newLink = link.replace(regex, "https://drive.google.com/uc?export=download&id=$1");
-  
-    return newLink;
-  }
-  
-  // Function to create and append a new data div for each entry
+// Function to create and append a new data div for each entry
   function createDataDiv(image, name, dept) {
     var dataContainer = document.getElementById('dataContainer');
   
@@ -23,25 +12,31 @@ function convertLink(link) {
     img.src = image;
     div.appendChild(img);
   
+    // Create a new div element
+    var div2 = document.createElement('div');
+    div2.classList.add('info');
+
     // Create a paragraph element for name
     var nameParagraph = document.createElement('p');
     nameParagraph.classList.add('name');
     nameParagraph.textContent = name;
-    div.appendChild(nameParagraph);
+    div2.appendChild(nameParagraph);
+
   
     // Create a paragraph element for department
     var deptParagraph = document.createElement('p');
     deptParagraph.classList.add('dept');
     deptParagraph.textContent = dept;
-    div.appendChild(deptParagraph);
+    div2.appendChild(deptParagraph);
   
     // Append the new div to the data container
     dataContainer.appendChild(div);
+    div.appendChild(div2);
   }
   
   // Replace CSV_URL with the URL of your CSV file
   var csvUrl =
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSC4PMMLjuF6Egz7IskwSOUtbiWhRDG-zwWMeAyrkzJoMw2zVnOmjqcqwOD4UivQ4K48MoRFmXsZeTO/pub?output=csv';
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTD5tpbc7FTkmfJNEy_wOE8qtytH2UpOKjs-q74lcmuPXQ2uPmWJ_1KBy09raCz2J8A9j6D0mSm1yAc/pub?gid=42643434&single=true&output=csv';
   
   // Fetch the CSV data using Fetch API
   fetch(csvUrl)
@@ -51,27 +46,10 @@ function convertLink(link) {
       var rows = csvData.split('\n');
       for (var i = 1; i < rows.length; i++) {
         var cells = rows[i].split(',');
-        var image = cells[3].trim(); // Assuming the image URL is in the fourth column
-        var name = cells[1].trim();  // Assuming the name is in the second column
-        var dept = cells[2].trim();   // Assuming the dept is in the third column
-        image = convertLink(image); // Convert the image link to the correct format
+        var image = cells[4].trim(); // Assuming the image URL is in the fourth column
+        var name = cells[0].trim();  // Assuming the name is in the second column
+        var dept = cells[3].trim();   // Assuming the dept is in the third column
         createDataDiv(image, name, dept); // Create and append the data div for each entry
       }
     })
     .catch((error) => console.error('Error fetching CSV:', error));
-  
-document.addEventListener("DOMContentLoaded",function(){
-
-  let i;
-  const img = document.querySelectorAll(".img");
-  const name = document.querySelectorAll(".name");
-  const dept = document.querySelectorAll(".dept");
-  
-  img.forEach(function(imgItem) {
-    i = img.indexOf(imgItem);
-    imgItem.addEventListener("mouseover", function() {
-      name[i].style.display = "flex";
-      dept[i].style.display = "flex";
-    });
-  });
-})

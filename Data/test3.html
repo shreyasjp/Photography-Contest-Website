@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Byte Array to Image</title>
+</head>
+<body>
+    <h2>Convert Byte Array to Image</h2>
+    <textarea id="byteArray" rows="5" cols="50"></textarea>
+    <br>
+    <button onclick="convertToImage()">Convert</button>
+    <br>
+    <div>
+        <h3>Image Preview</h3>
+        <img id="imagePreview" alt="Image Preview" style="max-width: 300px;">
+    </div>
+
+    <script>
+        function convertToImage() {
+            const byteArrayTextArea = document.getElementById('byteArray');
+            const imagePreview = document.getElementById('imagePreview');
+            
+            const byteArray = byteArrayTextArea.value;
+            if (!byteArray) {
+                alert('Please enter a byte array.');
+                return;
+            }
+
+            const imageUrl = `data:image/jpeg;base64,${byteArray}`;
+            imagePreview.src = imageUrl;
+        }
+    </script>
+</body>
+</html>

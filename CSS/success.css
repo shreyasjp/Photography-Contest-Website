@@ -1,0 +1,74 @@
+@import url("https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css");
+
+* {
+    font-family: "GothamPro";
+  }
+  
+  body {
+    background-color: hsla(0, 0%, 100%, 0.8);
+    margin: 0;
+    padding: 0;
+  }
+
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        align-content: center;
+        justify-content: center;
+        margin: 0%;
+    }
+
+    #gpay{
+        width: 32px;
+        height: 32px;
+        margin-right: 5px;
+    }
+
+    #whatsapp{
+        width: 32px;
+        height: 32px;
+        margin-left: 5px;
+    }
+
+    .Message{
+        font-size: 20px;
+        font-weight: 500;
+        max-width: 380px;
+        text-align: center;
+        color: #000000;
+        margin: 20px;
+    }
+
+    #next {
+        color: #494949;
+        font-weight: 100;
+        position: relative;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-weight: 200;
+        font-size: 14px;
+        margin: 20px;
+        background: linear-gradient(to top, rgba(20, 123, 219, 0.445), rgba(3, 161, 252, 0.37));
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-style: none;
+        border-radius: 5px;
+      }
+
+      #next:link {
+        text-decoration: none;
+        color: #494949;
+      }
+
+      #next:visited {
+        text-decoration: none;
+        color: #494949;
+      }

@@ -148,43 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
   phnInput.addEventListener("blur", validatePhone);
 });
 
-window.addEventListener("load", function() {
-  const form1 = document.querySelector("#form");
-  const form2 = document.querySelector("#form2");
-  const submitButton = document.querySelector("#submitlabel");
-  const link = document.querySelector('a');
-  
-  form1.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const data = new FormData(form1);
-    const action = e.target.action;
-    submitButton.classList.add("breathing");
-  let interval = setInterval(() => {
-    submitButton.classList.toggle("active");
-  }, 500);
-
-    fetch(action, {
-      method: 'POST',
-      body: data,
-    })
-    .then(() => {
-    form1.classList.add("remove");
-    submitButton.classList.add("remove");
-    link.classList.add("remove");
-    setTimeout(() => {
-      form1.remove();
-      submitButton.remove();
-      link.remove();
-      form2.classList.remove("hide");
-    }, 1000);
-    setTimeout(() => {
-      clearInterval(interval);
-      submitButton.classList.remove("breathing");
-    }, 0);
-  })
-  });
-});
-
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("dropdownInput");
   const Box = document.querySelector(".dropdown label");
