@@ -32,7 +32,8 @@ body {
   justify-items: center;
   align-content: center;
   justify-content: center;
-  margin: 0%;
+  margin: 0%;background-image: url("../Data/  bg1.png");
+  background-size: cover;
 }
 
 form {
@@ -299,5 +300,13 @@ a:visited {
   border-color: #d2d2d7;
   width: 350px;
   height: 70px;
-  background-color: hsla(0, 0%, 100%, 0.8);
+}
+
+#logo{
+  width: 400px;
+  height:170px;
+  object-fit: cover;
+  object-position: top;
+  zoom: 110%;
+  image-rendering: crisp-edges;
 }
