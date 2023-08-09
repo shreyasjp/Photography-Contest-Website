@@ -79,3 +79,10 @@ body, h1, h2, p, ul {
     text-decoration: none;
     color: #000000;
   }
+
+  /* Media query for phones */
+@media (max-width: 768px) {
+  .crop{
+    scale: 0.5;
+  }
+}
