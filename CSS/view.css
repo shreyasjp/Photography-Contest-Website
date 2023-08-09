@@ -112,3 +112,11 @@ body, h1, h2, p, ul {
   text-decoration: none;
   color: #494949;
 }
+
+/* Media query for phones */
+@media (max-width: 768px) {
+  .displayimage {
+    width: 100%;
+    margin-right: 0;
+  }
+}
