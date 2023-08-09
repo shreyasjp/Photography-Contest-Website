@@ -21,18 +21,28 @@
         align-content: center;
         justify-content: center;
         margin: 0%;
+        background-image: url("../Data/a24b55de7a5baf9b9e51872a91d19f6c.jpg");
+        background-size: cover;
     }
 
-    #gpay{
-        width: 32px;
-        height: 32px;
+    #gpayimg{
+        width: 22px;
+        height: 18px;
+        top: 8px;
+    }
+
+    #whatsappimg{
+        width: 22px;
+        height: 22px;
         margin-right: 5px;
+        top: 3px;
     }
 
-    #whatsapp{
-        width: 32px;
-        height: 32px;
+    #emailimg{
+        width: 22px;
+        height: 25px;
         margin-left: 5px;
+        top: 3px;
     }
 
     .Message{
@@ -43,7 +53,6 @@
         color: #000000;
         margin: 20px;
     }
-
     #next {
         color: #494949;
         font-weight: 100;

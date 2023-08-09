@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const isImage = file.type.startsWith("image/");
       if (!isImage) {
         Message.style.display = "block";
-        Message.style.color = "#e98e8e";
+        Message.style.color = "red";
         Message.textContent = "We accept only image files.";
         Message.style.marginBottom = "7px";
         previewContainer.style.display = "none";
         box.style.borderColor = "rgb(255, 140, 140)";
-        box.style.backgroundColor = "#ffe1e1";
+        box.style.backgroundColor = "#ffb4b43a";
         boxLabel.style.color = "red";
         submitButton.disabled = true;
         return;
@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(file);
     } else {
       Message.style.display = "block";
-      Message.style.color = "#e98e8e";
+      Message.style.color = "red";
       Message.textContent = "Wow, such empty.";
       Message.style.marginBottom = "7px";
       box.style.borderColor = "rgb(255, 140, 140)";
-      box.style.backgroundColor = "#ffe1e1";
+      box.style.backgroundColor = "#ffb4b43a";
       boxLabel.style.color = "red";
       previewContainer.style.display = "none";
       previewContainer.style.display = "none";
@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Check if the drop occurred inside the image input div
     if (event.target !== imageInput) {
       Message.style.display = "block";
-      Message.style.color = "#e98e8e";
+      Message.style.color = "red";
       Message.textContent = "Drop your image in the box";
       Message.style.marginBottom = "7px";
       box.style.borderColor = "rgb(255, 140, 140)";
-      box.style.backgroundColor = "#ffe1e1";
+      box.style.backgroundColor = "#ffb4b43a";
       boxLabel.style.color = "red";
       previewContainer.style.display = "none";
       submitButton.disabled = true;
@@ -100,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("load", function() {
   const form1 = document.querySelector("#form");
+  const sbmt = document.getElementById("submitlabel")
+  const load = document.getElementById("loading")
   const imageInput = document.getElementById("image");
   const cloudName = 'djbvxtdmg'; // Replace with your Cloudinary cloud name
   const unsignedUploadPreset = 'normal'; // Replace with your unsigned upload preset name
@@ -107,6 +109,8 @@ window.addEventListener("load", function() {
   
   form1.addEventListener("submit", function(e) {
     e.preventDefault();
+    sbmt.classList.add("hide");
+    load.classList.remove("hide");
     const file = imageInput.files[0];
     if (file) {
       const formData = new FormData();
@@ -140,7 +144,7 @@ window.addEventListener("load", function() {
           console.log('Google Apps Script response:', data);
 
           // Redirect to a different page after successful submission
-          window.location.href = "loading2.html";
+          window.location.href = "success.html";
         })
         .catch(error => {
           console.error('Google Apps Script submission error:', error);

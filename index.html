@@ -1,86 +1,39 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>ClickItUp • Enter</title>
-  <meta charset="utf-8" />
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <link rel="icon" type="image/png" sizes="32x32"
-    href="Data/448-4482247_camera-photo-svg-png-icon-free-download-.png" />
-  <link rel="icon" type="image/png" sizes="16x16"
-    href="Data/448-4482247_camera-photo-svg-png-icon-free-download-.png" />
-  <link rel="stylesheet" href="CSS/index.css" />
-</head>
-
-<body>
-  <div class="container">
-    <div id="imgbox"><img id="logo" src="Data\20230809_202839_0000.png"></div>
-    <form id="form"
-      action="https://script.google.com/macros/s/AKfycbwwgCasZ0rWU5CzdAe5JtnY3vgjPZ_6dAAlanbcs4NIGTOez6AvW_g06iYcx_2lijE/exec"
-      method="POST">
-      <div class="namebox inputbox">
-        <input type="text" required id="name" name="Name" class="email" spellcheck="false" autocapitalize="off"
-          autocomplete="off" aria-autocomplete="off" />
-        <label>Name</label>
-      </div>
-      <p class="inputerr" id="nameerr"> <span id="infoicon">🛈</span> You really got symbols in your name</p>
-      <div class="emailbox inputbox">
-        <input type="email" required id="email" name="Email" class="email" spellcheck="false" autocapitalize="off"
-          autocomplete="off" aria-autocomplete="off" />
-        <label>Email ID</label>
-      </div>
-      <p class="inputerr" id="mailerr"> <span id="infoicon">🛈</span> That does'nt look like a valid email address</p>
-      <div class="phnbox inputbox">
-        <input type="text" required id="phone" name="MobileNumber" class="email" spellcheck="false" autocapitalize="off"
-          autocomplete="off" aria-autocomplete="off" maxlength="10" minlength="10" />
-        <label>Mobile Number</label>
-      </div>
-      <p class="inputerr" id="phnerr"> <span id="infoicon">🛈</span> That does'nt look like a Mobile number</p>
-      <div class="dropdown inputbox">
-        <input type="text" required id="dropdownInput" name="Department" class="email" spellcheck="false"
-          autocapitalize="off" autocomplete="off" aria-autocomplete="list" />
-        <label for="dropdownInput">Department</label>
-        <ul class="dropdown-list">
-          <li>BA Economics</li>
-          <li>BA English (Model I)</li>
-          <li>BA English (Model II)</li>
-          <li>BCom Computer Application</li>
-          <li>BCom Computer Application SF</li>
-          <li>BCom Cooperation</li>
-          <li>BCom Finance & Taxation</li>
-          <li>BBA</li>
-          <li>BSc Chemistry (Model II)</li>
-          <li>BSc Computer Science SF</li>
-          <li>BSc Mathematics</li>
-          <li>BSc Physics</li>
-          <li>MSc Physics</li>
-          <li>MSc Mathematics</li>
-          <li>MA Economics</li>
-          <li>MSc Chemistry ( Self Financing)</li>
-          <li>MA English (Self Financing)</li>
-          <li>MCom Finance & Taxation</li>
-          <li>Boc Tourism & Hospitality Management</li>
-          <li>BVoc Banking & Financial Services</li>
-          <li>BVoc logistics & Management</li>
-          <li>BVoc Broadcasting & Journalism</li>
-        </ul>
-      </div>
-      <div class="uploadbox">
-        <input type="file" required name="Image" accept="image/*" id="image" />
-        <label for="Image" id="Upload">Drop your image</label>
-      </div>
-      <p id="Message"></p>
-      <div id="previewContainer">
-        <img id="previewImage" />
-      </div>
-      <input type="submit" id="submit" value="Continue" style="display: none;" />
-    </form>
-    <label for="submit" id="submitlabel">Continue</label>
-    <div class="viewbox">
-      <a href="loading.html" target="_blank">Already entered? See other entries here. <span id="symbol">🡥</span></a>
+  <head>
+    <title>ClickItUp</title>
+    <meta charset="utf-8" />
+    <meta
+      id="viewport"
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="Data/448-4482247_camera-photo-svg-png-icon-free-download-.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="Data/448-4482247_camera-photo-svg-png-icon-free-download-.png"
+    />
+    <link rel="stylesheet" href="CSS/index.css" />
+  </head>
+  <body>
+    <div id="container2" class="container2">
+    <div class="loading crop">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://lottie.host/c0c27725-b9b9-4ae7-9f37-0ad433e1e808/IfKhjsv0h3.json" background="transparent" speed="1" style="width: 300px; height: 300px" loop controls="none" autoplay direction="1" mode="normal"></lottie-player>
     </div>
-    <script src="Scripts/index.js"></script>
-    <script src="Scripts/imageentry.js"></script>
   </div>
-</body>
-</html>
+    <div id="container1" class="container hide">
+      <img id="logo" src="Data\20230809_202839_0000.png">
+      <a href="enter.html">Join The Contest.</a>
+      <a href="view.html">See All Entries.</a>
+      </div>
+  <script type="text/javascript" src="Scripts/index.js"></script>
+  </body>
+  </html>
