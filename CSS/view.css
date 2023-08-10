@@ -1,17 +1,31 @@
 @import url("https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css");
 
-*{
+* {
   font-family: "GothamPro";
   font-weight: 100;
   font-size: 11px;
 }
+
 /* Reset some default styles */
-body, h1, h2, p, ul {
+body,
+h1,
+h2,
+p,
+ul {
   margin: 0;
-  padding: 0;user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+}
+
+body {
+  background-image: url("../Data/a24b55de7a5baf9b9e51872a91d19f6c.jpg");
+  background-size: cover;
 }
 
 /* Container styles */
@@ -54,8 +68,10 @@ body, h1, h2, p, ul {
   display: block;
   transition: transform 0.3s, opacity 0.3s;
   -moz-window-dragging: none;
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
   user-select: none;
 }
 
@@ -77,32 +93,40 @@ body, h1, h2, p, ul {
   opacity: 1;
 }
 
-.Message{
+.Message {
   font-size: 14px;
   font-weight: 100;
   text-align: center;
   color: #000000;
   bottom: 0px;
-  margin: 0px;user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
+  margin: 0px;
+  user-select: none;
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
 }
 
-.Message2{
+.Message2 {
   font-size: 14px;
   font-weight: 100;
   text-align: center;
   color: #000000;
   bottom: 5px;
   margin: 0px;
-  margin-bottom: 20px;user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
+  margin-bottom: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
 }
 
-#whatsapp{
+#whatsapp {
   position: relative;
   width: 18px;
   height: 18px;
@@ -138,16 +162,20 @@ body, h1, h2, p, ul {
     width: 100%;
     margin-right: 0;
   }
-  .crop{
+
+  .crop {
     scale: 0.5;
   }
-  .Message{
+
+  .Message {
     font-size: 11px !important;
   }
-  .Message2{
+
+  .Message2 {
     font-size: 11px !important;
   }
-  #whatsapp{
+
+  #whatsapp {
     width: 11px;
     height: 11px;
     top: 1px;
@@ -155,22 +183,24 @@ body, h1, h2, p, ul {
   }
 }
 
-.footer{
+.footer {
   position: relative;
   top: 20px;
 }
 
-#lottie-controls{
+#lottie-controls {
   display: none;
 }
-.crop{
+
+.crop {
   display: flex;
   width: 300px;
   height: 250px;
   overflow: hidden;
   filter: grayscale(100);
 }
-.container2{
+
+.container2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -182,6 +212,6 @@ body, h1, h2, p, ul {
   background-size: cover;
 }
 
-.hide{
+.hide {
   display: none;
 }

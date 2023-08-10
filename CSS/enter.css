@@ -1,16 +1,16 @@
 @import url("https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css");
 
-@media(max-width:768px) {
-  #symbol{
+@media (max-width: 768px) {
+  #symbol {
     display: none;
   }
 }
+
 @media (max-width: 375px) {
-  .container{
-  transform: scale(0.75);
+  .container {
+    transform: scale(0.75);
   }
 }
-
 
 * {
   font-family: "GothamPro";
@@ -121,16 +121,21 @@ form {
   border-radius: 5px;
   max-height: 176px;
   overflow-y: auto;
-  border-style: solid ;
+  border-style: solid;
   border-width: 4px;
   border-color: hsla(234, 5%, 60%, 0.336);
   border-top: solid 4px hsla(234, 5%, 60%, 0.336);
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
 }
 
 .dropdown-list li {
@@ -138,20 +143,27 @@ form {
   cursor: pointer;
   color: #494949;
   border-bottom: 1px solid hsla(234, 5%, 60%, 0.336);
- /* Add a bottom border for separation */
-  margin-bottom: 3px; /* Add a small gap between elements */
+  /* Add a bottom border for separation */
+  margin-bottom: 3px;
+  /* Add a small gap between elements */
   border-radius: 5px;
   background-color: hsla(210, 3%, 73%, 0.548);
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
 }
 
 .dropdown-list li:last-child {
-  border-bottom: none; /* Remove the bottom border for the last item */
+  border-bottom: none;
+  /* Remove the bottom border for the last item */
   margin-bottom: 0%;
 }
 
@@ -170,6 +182,7 @@ form {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -184,7 +197,8 @@ form {
 
 /* Webkit-based browsers (e.g., Chrome, Safari) */
 .dropdown-list::-webkit-scrollbar {
-  width: 0; /* Hide the scrollbar on Webkit-based browsers */
+  width: 0;
+  /* Hide the scrollbar on Webkit-based browsers */
 }
 
 .uploadbox {
@@ -202,13 +216,13 @@ form {
   height: 100px;
 }
 
-#infoicon{
+#infoicon {
   font-size: 12px;
   font-weight: 100;
   font-optical-sizing: auto;
 }
 
-.inputerr{
+.inputerr {
   display: none;
   color: red;
   font-size: 11px;
@@ -219,16 +233,22 @@ form {
   margin-top: 2px;
   align-self: normal;
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
 }
 
-.uploadbox{
+.uploadbox {
   z-index: 800;
 }
+
 #image {
   opacity: 0;
   width: 100%;
@@ -243,11 +263,16 @@ form {
   font-weight: 300;
   z-index: 850;
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
 }
 
 #previewContainer {
@@ -272,11 +297,16 @@ form {
   height: 100%;
   width: 100%;
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
 }
 
 #submitlabel {
@@ -291,7 +321,11 @@ form {
   border-radius: 4px;
   opacity: 1;
   font-size: 13px;
-  background: linear-gradient(to top, rgba(20, 123, 219, 0.445), rgba(3, 161, 252, 0.37));
+  background: linear-gradient(
+    to top,
+    rgba(20, 123, 219, 0.445),
+    rgba(3, 161, 252, 0.37)
+  );
   color: #494949;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -309,21 +343,24 @@ a {
   font-weight: 200;
   font-size: 14px;
 }
+
 a:link {
   text-decoration: none;
   color: #494949;
 }
+
 a:visited {
   text-decoration: none;
   color: #494949;
 }
-#symbol{
+
+#symbol {
   color: #494949;
   font-weight: 100;
   font-size: 12px;
 }
 
-.viewbox{
+.viewbox {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -338,25 +375,30 @@ a:visited {
   height: 70px;
 }
 
-#logo{
+#logo {
   width: 400px;
-  height:170px;
+  height: 170px;
   object-fit: cover;
   object-position: top;
   zoom: 110%;
   image-rendering: crisp-edges;
   user-select: none;
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For Microsoft Edge */
-  -webkit-user-drag: none; /* For Safari */
-  -moz-user-drag: none; /* For Firefox */
+  -webkit-user-select: none;
+  /* For Safari */
+  -moz-user-select: none;
+  /* For Firefox */
+  -ms-user-select: none;
+  /* For Microsoft Edge */
+  -webkit-user-drag: none;
+  /* For Safari */
+  -moz-user-drag: none;
+  /* For Firefox */
 }
 
-.hide{
+.hide {
   display: none;
 }
 
-.loading{
+.loading {
   margin: 5px;
 }

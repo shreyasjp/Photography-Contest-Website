@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const input = document.querySelectorAll(".inputbox input");
   const label = document.querySelectorAll('.inputbox label');
 
-  input.forEach(function(inputItem, index) {
+  input.forEach(function (inputItem, index) {
     inputItem.addEventListener("focus", function () {
       label[index].classList.add("active");
     });
@@ -220,18 +220,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
   const imgdrg = document.querySelector("#logo");
   imgdrg.ondragstart = () => {
     return false;
   };
-  
+
   const imgdrg2 = document.querySelector("#previewImage");
   imgdrg2.ondragstart = () => {
     return false;
   };
 })
 
-document.addEventListener("contextmenu", function(e) {
+document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });

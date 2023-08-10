@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const boxLabel = document.querySelector(".uploadbox label");
   const previewContainer = document.getElementById("previewContainer");
   const previewImage = document.getElementById("previewImage");
-  const submitButton = document.getElementById("submit"); 
+  const submitButton = document.getElementById("submit");
 
   imageInput.addEventListener("change", handleImageUpload);
 
@@ -14,11 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (file) {
       // Check if the uploaded file is an image
-      const isImage = file.type.startsWith("image/");
+      const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp', 'image/avif', 'image/jpegxl'];
+      const isImage = allowedFormats.includes(file.type);
       if (!isImage) {
         Message.style.display = "block";
         Message.style.color = "red";
-        Message.textContent = "We accept only image files.";
+        Message.textContent = "Erm, that won't work. Choose an image file.";
         Message.style.marginBottom = "7px";
         previewContainer.style.display = "none";
         box.style.borderColor = "rgb(255, 140, 140)";
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Image upload and form submission
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   const form1 = document.querySelector("#form");
   const sbmt = document.getElementById("submitlabel");
   const load = document.getElementById("loading");
@@ -107,21 +108,20 @@ window.addEventListener("load", function() {
   const unsignedUploadPreset = 'normal'; // Replace with your unsigned upload preset name
   const targetFolder = 'ClickItUp'; // Replace with the desired folder name
 
-  form1.addEventListener("submit", function(e) {
+  form1.addEventListener("submit", function (e) {
     e.preventDefault();
     sbmt.classList.add("hide");
     load.classList.remove("hide");
     const file = imageInput.files[0];
-    
+
     if (file) {
-        const maxFileSize = 10 * 1024 * 1024; // 10MB
-        
-        // Calculate the target quality setting based on the image size
-        let quality = 0.9; // Default quality setting
-        if (file.size > maxFileSize) {
-          quality = Math.min(1.0, maxFileSize / file.size); // Adjust quality proportionally
-        }
-        console.log(quality);
+      const maxFileSize = 10 * 1024 * 1024; // 10MB
+
+      // Calculate the target quality setting based on the image size
+      let quality = 0.9; // Default quality setting
+      if (file.size > maxFileSize) {
+        quality = Math.min(1.0, maxFileSize / file.size); // Adjust quality proportionally
+      }
 
       new Compressor(file, {
         quality: quality, // Adjust the quality setting as needed
@@ -137,38 +137,36 @@ window.addEventListener("load", function() {
             method: 'POST',
             body: formData,
           })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Upload successful:', data);
-
-            // Get the URL of the uploaded image
-            const imageUrl = data.secure_url; // Use data.url for non-secure URLs
-
-            const sheetData = new FormData(form1);
-            sheetData.append("Image URL", imageUrl);
-
-            const action = e.target.action;
-
-            fetch(action, {
-              method: 'POST',
-              body: sheetData,
-            })
-            .then(response => response.json()) // Handle the response from the Google Apps Script
+            .then(response => response.json())
             .then(data => {
-              console.log('Google Apps Script response:', data);
 
-              // Redirect to a different page after successful submission
-              window.location.href = "success.html";  
+              // Get the URL of the uploaded image
+              const imageUrl = data.secure_url; // Use data.url for non-secure URLs
+
+              const sheetData = new FormData(form1);
+              sheetData.append("Image URL", imageUrl);
+
+              const action = e.target.action;
+
+              fetch(action, {
+                method: 'POST',
+                body: sheetData,
+              })
+                .then(response => response.json()) // Handle the response from the Google Apps Script
+                .then(data => {
+
+                  // Redirect to a different page after successful submission
+                  window.location.href = "success.html";
+                })
+                .catch(error => {
+                  console.error('Google Apps Script submission error:', error);
+                  // Handle error
+                });
             })
             .catch(error => {
-              console.error('Google Apps Script submission error:', error);
+              console.error('Cloudinary upload error:', error);
               // Handle error
             });
-          })
-          .catch(error => {
-            console.error('Cloudinary upload error:', error);
-            // Handle error
-          });
         },
         error(error) {
           console.error('Compressor error:', error);
