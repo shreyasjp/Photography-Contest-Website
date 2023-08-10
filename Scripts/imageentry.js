@@ -158,7 +158,7 @@ window.addEventListener("load", function() {
               console.log('Google Apps Script response:', data);
 
               // Redirect to a different page after successful submission
-              //window.location.href = "success.html";  
+              window.location.href = "success.html";  
             })
             .catch(error => {
               console.error('Google Apps Script submission error:', error);
