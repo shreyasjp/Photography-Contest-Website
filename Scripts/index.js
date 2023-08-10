@@ -7,3 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
         , 2300);
 })
+
+const imgdrg = document.querySelector("#logo");
+imgdrg.ondragstart = () => {
+  return false;
+};
+
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});

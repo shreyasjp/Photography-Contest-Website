@@ -100,56 +100,80 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("load", function() {
   const form1 = document.querySelector("#form");
-  const sbmt = document.getElementById("submitlabel")
-  const load = document.getElementById("loading")
+  const sbmt = document.getElementById("submitlabel");
+  const load = document.getElementById("loading");
   const imageInput = document.getElementById("image");
   const cloudName = 'djbvxtdmg'; // Replace with your Cloudinary cloud name
   const unsignedUploadPreset = 'normal'; // Replace with your unsigned upload preset name
   const targetFolder = 'ClickItUp'; // Replace with the desired folder name
-  
+
   form1.addEventListener("submit", function(e) {
     e.preventDefault();
     sbmt.classList.add("hide");
     load.classList.remove("hide");
     const file = imageInput.files[0];
+    
     if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', unsignedUploadPreset);
-      formData.append('folder', targetFolder); // Set the target folder here
-      formData.append('quality', 'auto:good'); // Specify quality parameter here
-
-      fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-        method: 'POST',
-        body: formData,
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Upload successful:', data);
+        const maxFileSize = 10 * 1024 * 1024; // 10MB
         
-        // Get the URL of the uploaded image
-        const imageUrl = data.secure_url; // Use data.url for non-secure URLs
+        // Calculate the target quality setting based on the image size
+        let quality = 0.9; // Default quality setting
+        if (file.size > maxFileSize) {
+          quality = Math.min(1.0, maxFileSize / file.size); // Adjust quality proportionally
+        }
+        console.log(quality);
 
-        const sheetData = new FormData(form1);
-        sheetData.append("Image URL",imageUrl);
+      new Compressor(file, {
+        quality: quality, // Adjust the quality setting as needed
+        mimeType: 'image/jpeg', // Set the desired output mimeType
+        success(compressedResult) {
+          const formData = new FormData();
+          formData.append('file', compressedResult);
+          formData.append('upload_preset', unsignedUploadPreset);
+          formData.append('folder', targetFolder); // Set the target folder here
+          formData.append('quality', 'auto:good'); // Specify quality parameter here
 
-        const action = e.target.action;
-        
-        fetch(action, {
-          method: 'POST',
-          body: sheetData,
-        })
-        .then(response => response.json()) // Handle the response from the Google Apps Script
-        .then(data => {
-          console.log('Google Apps Script response:', data);
+          fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: 'POST',
+            body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Upload successful:', data);
 
-          // Redirect to a different page after successful submission
-          window.location.href = "success.html";
-        })
-        .catch(error => {
-          console.error('Google Apps Script submission error:', error);
+            // Get the URL of the uploaded image
+            const imageUrl = data.secure_url; // Use data.url for non-secure URLs
+
+            const sheetData = new FormData(form1);
+            sheetData.append("Image URL", imageUrl);
+
+            const action = e.target.action;
+
+            fetch(action, {
+              method: 'POST',
+              body: sheetData,
+            })
+            .then(response => response.json()) // Handle the response from the Google Apps Script
+            .then(data => {
+              console.log('Google Apps Script response:', data);
+
+              // Redirect to a different page after successful submission
+              //window.location.href = "success.html";  
+            })
+            .catch(error => {
+              console.error('Google Apps Script submission error:', error);
+              // Handle error
+            });
+          })
+          .catch(error => {
+            console.error('Cloudinary upload error:', error);
+            // Handle error
+          });
+        },
+        error(error) {
+          console.error('Compressor error:', error);
           // Handle error
-        });
+        },
       });
     }
   });

@@ -18,6 +18,7 @@ body, h1, h2, p, ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-items: center;
   background-image: url("../Data/a24b55de7a5baf9b9e51872a91d19f6c.jpg");
   background-size: cover;
   width: 100vw;
@@ -46,12 +47,15 @@ body, h1, h2, p, ul {
   }
   
   #logo{
-    width: 600px;
-    height:270px;
     object-fit: cover;
-    object-position: top;
-    zoom: 130%;
     image-rendering: crisp-edges;
+    margin: 20px;
+    user-select: none;
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Microsoft Edge */
+    -webkit-user-drag: none; /* For Safari */
+    -moz-user-drag: none; /* For Firefox */
   }
   
   .hide{
@@ -67,7 +71,7 @@ body, h1, h2, p, ul {
     -ms-user-select: none;
     user-select: none;
     font-size: 18px;
-    margin: 10px;
+    margin: 5px;
   }
   
   a:link {
@@ -84,5 +88,12 @@ body, h1, h2, p, ul {
 @media (max-width: 768px) {
   .crop{
     scale: 0.5;
+  }
+  #logo{
+    scale: 0.6;
+    margin: 0px;
+  }
+  a{
+    font-size: 12px;
   }
 }

@@ -219,3 +219,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded",function(){
+  const imgdrg = document.querySelector("#logo");
+  imgdrg.ondragstart = () => {
+    return false;
+  };
+  
+  const imgdrg2 = document.querySelector("#previewImage");
+  imgdrg2.ondragstart = () => {
+    return false;
+  };
+})
+
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});

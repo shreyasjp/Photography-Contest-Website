@@ -62,3 +62,12 @@ setTimeout(() => {
 }, 1000);
     })
     .catch((error) => console.error('Error fetching CSV:', error));
+
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});
+
+const imgdrg = document.querySelector("img");
+imgdrg.ondragstart = () => {
+  return false;
+};

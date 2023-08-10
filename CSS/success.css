@@ -23,6 +23,12 @@
         margin: 0%;
         background-image: url("../Data/a24b55de7a5baf9b9e51872a91d19f6c.jpg");
         background-size: cover;
+        user-select: none;
+        -webkit-user-select: none; /* For Safari */
+        -moz-user-select: none; /* For Firefox */
+        -ms-user-select: none; /* For Microsoft Edge */
+        -webkit-user-drag: none; /* For Safari */
+        -moz-user-drag: none; /* For Firefox */
     }
 
     #gpayimg{
