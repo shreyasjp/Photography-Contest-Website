@@ -104,16 +104,30 @@ window.addEventListener("load", function () {
   const sbmt = document.getElementById("submitlabel");
   const load = document.getElementById("loading");
   const imageInput = document.getElementById("image");
+  const err = document.getElementById("loaderr");
   const cloudName = 'djbvxtdmg'; // Replace with your Cloudinary cloud name
   const unsignedUploadPreset = 'normal'; // Replace with your unsigned upload preset name
   const targetFolder = 'ClickItUp'; // Replace with the desired folder name
+  let timeoutId; // Variable to hold the timeout ID
+  let errorOccurred = false; // Flag to indicate if an error occurred
 
   form1.addEventListener("submit", function (e) {
     e.preventDefault();
     sbmt.classList.add("hide");
     load.classList.remove("hide");
-    const file = imageInput.files[0];
+    err.classList.add("hide"); // Hide the error message initially
+    errorOccurred = false; // Reset the error flag
+    timeoutId = setTimeout(() => {
+      if (!errorOccurred) { // Only show timeout error if no other error occurred
+        console.error('Loading timeout (30 seconds exceeded)');
+        sbmt.classList.remove("hide");
+        load.classList.add("hide");
+        err.classList.remove("hide");
+      }
+    }, 30000); // 30 seconds
 
+    const file = imageInput.files[0];
+    
     if (file) {
       const maxFileSize = 10 * 1024 * 1024; // 10MB
 
@@ -124,14 +138,18 @@ window.addEventListener("load", function () {
       }
 
       new Compressor(file, {
-        quality: quality, // Adjust the quality setting as needed
-        mimeType: 'image/jpeg', // Set the desired output mimeType
+        quality: quality,
+        mimeType: 'image/jpeg',
         success(compressedResult) {
+          if (errorOccurred) return; // Stop execution if error occurred
+
+          clearTimeout(timeoutId); // Clear the timeout since loading was successful
+
           const formData = new FormData();
           formData.append('file', compressedResult);
           formData.append('upload_preset', unsignedUploadPreset);
-          formData.append('folder', targetFolder); // Set the target folder here
-          formData.append('quality', 'auto:good'); // Specify quality parameter here
+          formData.append('folder', targetFolder);
+          formData.append('quality', 'auto:good');
 
           fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
             method: 'POST',
@@ -139,9 +157,9 @@ window.addEventListener("load", function () {
           })
             .then(response => response.json())
             .then(data => {
+              if (errorOccurred) return; // Stop execution if error occurred
 
-              // Get the URL of the uploaded image
-              const imageUrl = data.secure_url; // Use data.url for non-secure URLs
+              const imageUrl = data.secure_url;
 
               const sheetData = new FormData(form1);
               sheetData.append("Image URL", imageUrl);
@@ -152,25 +170,34 @@ window.addEventListener("load", function () {
                 method: 'POST',
                 body: sheetData,
               })
-                .then(response => response.json()) // Handle the response from the Google Apps Script
+                .then(response => response.json())
                 .then(data => {
+                  if (errorOccurred) return; // Stop execution if error occurred
 
-                  // Redirect to a different page after successful submission
-                  window.location.href = "success.html";
+                  window.location.href = "success.html"; // Redirect on success
                 })
                 .catch(error => {
+                  errorOccurred = true; // Set the error flag
                   console.error('Google Apps Script submission error:', error);
-                  // Handle error
+                  sbmt.classList.remove("hide");
+                  load.classList.add("hide");
+                  err.classList.remove("hide");
                 });
             })
             .catch(error => {
+              errorOccurred = true; // Set the error flag
               console.error('Cloudinary upload error:', error);
-              // Handle error
+              sbmt.classList.remove("hide");
+              load.classList.add("hide");
+              err.classList.remove("hide");
             });
         },
         error(error) {
+          errorOccurred = true; // Set the error flag
           console.error('Compressor error:', error);
-          // Handle error
+          sbmt.classList.remove("hide");
+          load.classList.add("hide");
+          err.classList.remove("hide");
         },
       });
     }

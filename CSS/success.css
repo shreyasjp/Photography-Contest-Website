@@ -37,6 +37,7 @@ body {
 }
 
 #gpayimg {
+  display: none;
   width: 36px;
   height: 18px;
   margin-left: 11px;
@@ -44,15 +45,15 @@ body {
 }
 
 #whatsappimg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   margin-right: 5px;
   top: 3px;
 }
 
 #emailimg {
   width: 24px;
-  height: 25px;
+  height: 24px;
   margin-left: 5px;
   top: 3px;
 }
@@ -64,6 +65,7 @@ body {
   text-align: center;
   color: #000000;
   margin: 20px;
+  margin-top: 0;
 }
 
 #next {
@@ -93,4 +95,19 @@ body {
 #next:visited {
   text-decoration: none;
   color: #494949;
+}
+
+#qr{
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#qrdef{
+  font-size: 12px;
+  position: relative;
+  margin-top: 5px;
+  color: black;
+  margin-bottom: 20px;
 }
