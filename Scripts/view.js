@@ -65,7 +65,7 @@ fetch(csvUrl)
     setTimeout(() => {
       container2.classList.add("hide");
       container1.classList.remove("hide");
-    }, 1000);
+    }, 1300);
   })
   .catch((error) => console.error('Error fetching CSV:', error));
 
