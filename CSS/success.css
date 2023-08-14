@@ -97,14 +97,14 @@ body {
   color: #494949;
 }
 
-#qr{
+#qr {
   width: 200px;
   height: 200px;
   border-radius: 5px;
   text-decoration: none;
 }
 
-#qrdef{
+#qrdef {
   font-size: 12px;
   position: relative;
   margin-top: 5px;

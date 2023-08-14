@@ -127,7 +127,7 @@ window.addEventListener("load", function () {
     }, 30000); // 30 seconds
 
     const file = imageInput.files[0];
-    
+
     if (file) {
       const maxFileSize = 10 * 1024 * 1024; // 10MB
 

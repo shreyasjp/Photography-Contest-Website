@@ -4,6 +4,7 @@
   #symbol {
     display: none;
   }
+
   .body {
     scale: 0.75px;
   }
@@ -325,11 +326,9 @@ form {
   border-radius: 4px;
   opacity: 1;
   font-size: 13px;
-  background: linear-gradient(
-    to top,
-    rgba(20, 123, 219, 0.445),
-    rgba(3, 161, 252, 0.37)
-  );
+  background: linear-gradient(to top,
+      rgba(20, 123, 219, 0.445),
+      rgba(3, 161, 252, 0.37));
   color: #494949;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -407,7 +406,7 @@ a:visited {
   margin: 5px;
 }
 
-#loaderr{
+#loaderr {
   position: relative;
   margin-top: 10px;
   color: red;

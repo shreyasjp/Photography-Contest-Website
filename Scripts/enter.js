@@ -150,12 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("dropdownInput");
-  const Box = document.querySelector(".dropdown label");
+  const label = document.querySelector('.dropdown label');
   const dropdownList = document.querySelector('.dropdown-list');
   const listItems = document.querySelectorAll('.dropdown-list li');
 
-  input.addEventListener('focus', function () {
-    const searchString = input.value;
+  function filterDropdownItems(searchString) {
     const regex = new RegExp(searchString, 'i');
 
     listItems.forEach(item => {
@@ -167,7 +166,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Show or hide the dropdown list based on whether there are matching items
     const matchingItems = Array.from(listItems).some(item => {
       return item.style.display === 'block';
     });
@@ -177,35 +175,17 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       dropdownList.style.display = 'none';
     }
+  }
+
+  input.addEventListener('focus', function () {
+    filterDropdownItems(input.value);
   });
 
   input.addEventListener('input', function () {
-    const searchString = input.value;
-    const regex = new RegExp(searchString, 'i');
-
-    listItems.forEach(item => {
-      const listItemText = item.textContent;
-      if (searchString === '' || regex.test(listItemText)) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-
-    // Show or hide the dropdown list based on whether there are matching items
-    const matchingItems = Array.from(listItems).some(item => {
-      return item.style.display === 'block';
-    });
-
-    if (matchingItems) {
-      dropdownList.style.display = 'block';
-    } else {
-      dropdownList.style.display = 'none';
-    }
+    filterDropdownItems(input.value);
   });
 
   document.addEventListener('click', function (event) {
-    // Hide the dropdown list when clicking outside the input field or list items
     if (!input.contains(event.target) && !dropdownList.contains(event.target)) {
       dropdownList.style.display = 'none';
     }
@@ -214,11 +194,20 @@ document.addEventListener("DOMContentLoaded", function () {
   listItems.forEach(item => {
     item.addEventListener('click', function () {
       input.value = item.textContent;
-      Box.classList.add("active");
+      label.classList.add('active');
       dropdownList.style.display = 'none';
     });
   });
+
+  input.addEventListener('blur', function () {
+    const selectedItem = Array.from(listItems).find(item => item.textContent === input.value);
+    if (!selectedItem) {
+      input.value = '';
+    }
+  });
 });
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const imgdrg = document.querySelector("#logo");
